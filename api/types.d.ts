@@ -1,4 +1,3 @@
-
 export interface UserFields {
     email: string;
     displayName: string;
