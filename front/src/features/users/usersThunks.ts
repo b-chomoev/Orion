@@ -8,7 +8,18 @@ export const register = createAsyncThunk<RegisterResponse, RegisterMutation, { r
   'users/register',
   async (registerMutation: RegisterMutation, {rejectWithValue}) => {
     try {
-      const response = await axiosApi.post<RegisterResponse>('/users/register', registerMutation);
+      const formData = new FormData();
+      const keys = Object.keys(registerMutation) as (keyof RegisterMutation)[];
+
+       keys.forEach((key) => {
+         const value = registerMutation[key];
+
+         if (value !== null) {
+           formData.append(key, value);
+         }
+       })
+
+      const response = await axiosApi.post<RegisterResponse>('/users/register', formData);
       return response.data;
     } catch (error) {
       if (isAxiosError(error) && error.response && error.response.status === 400) {

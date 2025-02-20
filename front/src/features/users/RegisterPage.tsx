@@ -13,6 +13,7 @@ import { selectRegisterError } from './usersSlice';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { register } from './usersThunks';
 import FileInput from '../../components/FileInput/FileInput';
+import { toast } from 'react-toastify';
 
 const initialState = {
   email: '',
@@ -45,7 +46,6 @@ const RegisterPage = () => {
         setError(prevState => ({...prevState, 'email': 'Invalid email format'}));
       }
     }
-
   };
 
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -53,9 +53,10 @@ const RegisterPage = () => {
 
     try {
       await dispatch(register(form)).unwrap();
+      toast.success('User was successfully registered!');
       navigate('/');
     } catch (e) {
-      console.error('Failed to register:', e);
+      toast.error('Error registering user');
     }
   };
 
@@ -97,15 +98,8 @@ const RegisterPage = () => {
           Sign Up
         </Typography>
 
-        {/*{loginError && (*/}
-        {/*  <Alert severity="error" sx={{mt: 3, width: '100%'}}>*/}
-        {/*    {loginError.error}*/}
-        {/*  </Alert>*/}
-        {/*)}*/}
-
         <Box component="form" noValidate onSubmit={submitHandler} sx={{ mt: 3 }}>
           <Grid container direction={'column'} size={12} spacing={2}>
-
             <Grid size={12}>
               <TextField
                 fullWidth
@@ -161,8 +155,8 @@ const RegisterPage = () => {
           </Button>
           <Grid container justifyContent="flex-end">
             <Grid size={12}>
-              <NavLink to={'/register'}>
-                Doesn't have an account yet? Sign up
+              <NavLink to={'/login'}>
+                Already have an account? Sign in
               </NavLink>
             </Grid>
           </Grid>
