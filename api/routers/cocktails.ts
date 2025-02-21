@@ -14,6 +14,23 @@ cocktailsRouter.get('/', async (req, res, next) => {
     }
 });
 
+cocktailsRouter.get('/:id', async (req, res, next) => {
+    try {
+        const {id} = req.params;
+
+        const cocktail = await Cocktail.findById(id).populate("user");
+
+        if (!cocktail) {
+            res.status(404).send({error: 'Not found'});
+            return;
+        }
+
+        res.send(cocktail);
+    } catch (e) {
+        next(e);
+    }
+});
+
 cocktailsRouter.post('/', imagesUpload.single('image'), auth, async (req, res, next) => {
     const reqWithUser = req as RequestWithUser;
 
