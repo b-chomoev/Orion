@@ -2,6 +2,7 @@ import express from "express";
 import Cocktail from "../models/Cocktail";
 import {imagesUpload} from "../multer";
 import auth, {RequestWithUser} from "../middleware/auth";
+import permit from "../middleware/permit";
 
 const cocktailsRouter = express.Router();
 
@@ -31,7 +32,7 @@ cocktailsRouter.get('/:id', async (req, res, next) => {
     }
 });
 
-cocktailsRouter.post('/', imagesUpload.single('image'), auth, async (req, res, next) => {
+cocktailsRouter.post('/', imagesUpload.single('image'), auth,async (req, res, next) => {
     const reqWithUser = req as RequestWithUser;
 
     const parsedIngredients = req.body.ingredients ? JSON.parse(req.body.ingredients) : [];
