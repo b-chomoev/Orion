@@ -7,6 +7,7 @@ import RegisterPage from './features/users/RegisterPage';
 import NewCocktailPage from './features/cocktails/NewCocktailPage/NewCocktailPage';
 import MainPage from './containers/MainPage/MainPage';
 import DetailedCocktail from './features/cocktails/DetailedCocktail/DetailedCocktail';
+import MyCocktails from './features/cocktails/MyCocktails/MyCocktails';
 
 const App = () => {
   return (
@@ -24,7 +25,7 @@ const App = () => {
             <Route path='/login' element={<LoginPage />} />
             <Route path='/register' element={<RegisterPage />} />
             <Route path='/new-cocktail' element={<NewCocktailPage />} />
-            <Route path='/cocktails/my' element={<h4>Here is going to be users cocktail list.</h4>} />
+            <Route path='/cocktails/my' element={<MyCocktails />} />
             <Route path='*' element={<h3>Not Found</h3>} />
           </Routes>
         </Container>

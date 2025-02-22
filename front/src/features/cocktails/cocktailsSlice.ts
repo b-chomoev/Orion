@@ -1,6 +1,6 @@
 import { Cocktail } from '../../types';
 import { createSlice } from '@reduxjs/toolkit';
-import { createCocktail, fetchCocktails, fetchOneCocktail } from './cocktailsThunks';
+import { createCocktail, fetchCocktails, fetchMyCocktails, fetchOneCocktail } from './cocktailsThunks';
 import { RootState } from '../../app/store';
 
 interface ICocktail {
@@ -59,6 +59,17 @@ export const createCocktailSlice = createSlice({
       .addCase(fetchOneCocktail.rejected, (state) => {
         state.fetchLoading = false;
       })
+
+      .addCase(fetchMyCocktails.pending, (state) => {
+        state.fetchLoading = true;
+      })
+      .addCase(fetchMyCocktails.fulfilled, (state, {payload: cocktail}) => {
+        state.fetchLoading = false;
+        state.items = cocktail;
+      })
+      .addCase(fetchMyCocktails.rejected, (state) => {
+        state.fetchLoading = false;
+      });
   }
 })
 
