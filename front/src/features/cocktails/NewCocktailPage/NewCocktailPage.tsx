@@ -28,7 +28,7 @@ const NewCocktailPage = () => {
     dispatch(createCocktail({ ...form, ingredients: JSON.stringify(ingredients) }));
     setForm(initialState);
     navigate('/');
-    toast.success('Cocktail created successfully');
+    toast.success('Cocktail created successfully, and your cocktail on admin review');
   };
 
   const inputChangeHandler = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -68,7 +68,6 @@ const NewCocktailPage = () => {
     <Container maxWidth="md">
       <form onSubmit={submitFormHandler}>
         <Grid container direction="column" spacing={2}>
-          {/* Название коктейля */}
           <Grid size={{ xs: 12 }}>
             <Typography variant="h6">Name of the cocktail</Typography>
             <TextField
@@ -83,7 +82,6 @@ const NewCocktailPage = () => {
             />
           </Grid>
 
-          {/* Ингредиенты */}
           <Grid size={{ xs: 12 }}>
             <Typography variant="h6">Ingredients</Typography>
             <Grid container direction="column" spacing={2}>

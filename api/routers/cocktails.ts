@@ -2,12 +2,13 @@ import express from "express";
 import Cocktail from "../models/Cocktail";
 import {imagesUpload} from "../multer";
 import auth, {RequestWithUser} from "../middleware/auth";
+import permit from "../middleware/permit";
 
 const cocktailsRouter = express.Router();
 
 cocktailsRouter.get('/', async (req, res, next) => {
     try {
-        const cocktails = await Cocktail.find();
+        const cocktails = await Cocktail.find({isPublished: true}).populate("user");
         res.send(cocktails);
     } catch (e) {
         next(e);
@@ -66,6 +67,24 @@ cocktailsRouter.post('/', imagesUpload.single('image'), auth,async (req, res, ne
         res.send(cocktail);
     } catch (e) {
         next(e);
+    }
+});
+
+cocktailsRouter.patch('/:id/toggleStatus', auth, permit('admin') , async (req, res, next) => {
+    try {
+        const { id } = req.params;
+        const cocktail = await Cocktail.findById(id);
+
+        if (!cocktail) {
+            res.status(404).send({ error: "Cocktail not found" });
+            return
+        }
+
+        cocktail.isPublished = !cocktail.isPublished;
+        await cocktail.save();
+        res.send({ message: "Cocktail publication status updated", cocktail });
+    } catch (error) {
+        next(error);
     }
 });
 
