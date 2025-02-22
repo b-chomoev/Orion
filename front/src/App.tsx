@@ -8,6 +8,7 @@ import NewCocktailPage from './features/cocktails/NewCocktailPage/NewCocktailPag
 import MainPage from './containers/MainPage/MainPage';
 import DetailedCocktail from './features/cocktails/DetailedCocktail/DetailedCocktail';
 import MyCocktails from './features/cocktails/MyCocktails/MyCocktails';
+import AdminPage from './containers/AdminPage/AdminPage';
 
 const App = () => {
   return (
@@ -26,6 +27,7 @@ const App = () => {
             <Route path='/register' element={<RegisterPage />} />
             <Route path='/new-cocktail' element={<NewCocktailPage />} />
             <Route path='/cocktails/my' element={<MyCocktails />} />
+            <Route path='/admin' element={<AdminPage />} />
             <Route path='*' element={<h3>Not Found</h3>} />
           </Routes>
         </Container>

@@ -30,6 +30,14 @@ export const fetchCocktails = createAsyncThunk<Cocktail[], void>(
   },
 );
 
+export const fetchAllCocktails = createAsyncThunk<Cocktail[], void>(
+  "cocktails/fetchAllCocktails",
+  async () => {
+    const response = await axiosApi<Cocktail[]>("/cocktails/all");
+    return response.data || [];
+  },
+);
+
 export const fetchOneCocktail = createAsyncThunk<Cocktail, string>(
   "cocktails/fetchOneCocktail",
   async (id) => {

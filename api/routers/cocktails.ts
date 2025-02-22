@@ -15,6 +15,16 @@ cocktailsRouter.get('/', async (req, res, next) => {
     }
 });
 
+cocktailsRouter.get('/all', async (req, res, next) => {
+    try {
+        const cocktails = await Cocktail.find();
+        res.send(cocktails);
+    } catch (e) {
+        next(e);
+    }
+});
+
+
 cocktailsRouter.get('/my', auth, async (req, res, next) => {
     try {
         const request = req as RequestWithUser;
