@@ -62,6 +62,7 @@ export const createCocktailSlice = createSlice({
 
       .addCase(fetchMyCocktails.pending, (state) => {
         state.fetchLoading = true;
+        state.items = [];
       })
       .addCase(fetchMyCocktails.fulfilled, (state, {payload: cocktail}) => {
         state.fetchLoading = false;
@@ -69,6 +70,7 @@ export const createCocktailSlice = createSlice({
       })
       .addCase(fetchMyCocktails.rejected, (state) => {
         state.fetchLoading = false;
+        state.items = [];
       });
   }
 })

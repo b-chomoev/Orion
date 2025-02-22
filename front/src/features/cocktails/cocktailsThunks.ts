@@ -1,6 +1,7 @@
 import { Cocktail, CocktailMutation } from '../../types';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axiosApi from '../../axiosApi';
+import { isAxiosError } from 'axios';
 
 export const createCocktail = createAsyncThunk<void, CocktailMutation>(
   "cocktails/createCocktail",
@@ -39,8 +40,15 @@ export const fetchOneCocktail = createAsyncThunk<Cocktail, string>(
 
 export const fetchMyCocktails = createAsyncThunk<Cocktail[], void>(
   "cocktails/fetchMyCocktails",
-  async () => {
-    const response = await axiosApi<Cocktail[]>("/cocktails/my");
-    return response.data || [];
+  async (_, {rejectWithValue}) => {
+    try {
+      const response = await axiosApi.get('/cocktails/my');
+      return response.data;
+    } catch (error) {
+      if (isAxiosError(error) && error.response) {
+        return rejectWithValue(error.response.data);
+      }
+      throw error;
+    }
   }
 );
