@@ -8,6 +8,13 @@ export interface Cocktail {
   isPublished: boolean;
 }
 
+export interface CocktailMutation {
+  name: string;
+  ingredients: string;
+  recipe: string;
+  image: File | null;
+}
+
 export interface RegisterMutation {
   email: string;
   displayName: string;

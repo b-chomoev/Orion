@@ -48,7 +48,7 @@ const FileInput: React.FC<Props> = ({ name, label, onGetFile }) => {
           />
         </Grid>
         <Grid>
-          <Button variant="contained" onClick={activateInput}>
+          <Button variant="outlined" onClick={activateInput} >
             Browse
           </Button>
         </Grid>

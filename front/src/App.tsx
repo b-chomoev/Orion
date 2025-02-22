@@ -4,6 +4,7 @@ import Container from '@mui/material/Container';
 import { Route, Routes } from 'react-router-dom';
 import LoginPage from './features/users/LoginPage';
 import RegisterPage from './features/users/RegisterPage';
+import NewCocktailPage from './features/cocktails/NewCocktailPage/NewCocktailPage';
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
             <Route path='/' element={<h3>Here is going to be the main page</h3>} />
             <Route path='/login' element={<LoginPage />} />
             <Route path='/register' element={<RegisterPage />} />
+            <Route path='/new-cocktail' element={<NewCocktailPage />} />
             <Route path='*' element={<h3>Not Found</h3>} />
           </Routes>
         </Container>

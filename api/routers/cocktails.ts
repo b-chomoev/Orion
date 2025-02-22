@@ -2,13 +2,12 @@ import express from "express";
 import Cocktail from "../models/Cocktail";
 import {imagesUpload} from "../multer";
 import auth, {RequestWithUser} from "../middleware/auth";
-import permit from "../middleware/permit";
 
 const cocktailsRouter = express.Router();
 
 cocktailsRouter.get('/', async (req, res, next) => {
     try {
-        const cocktails = await Cocktail.find().populate("user");
+        const cocktails = await Cocktail.find();
         res.send(cocktails);
     } catch (e) {
         next(e);
