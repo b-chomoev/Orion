@@ -1,7 +1,7 @@
 export interface Cocktail {
   _id: string;
   name: string;
-  ingredients: string[];
+  ingredients: [{name: string, amount: string}];
   recipe: string;
   image: string | null;
   user: User;

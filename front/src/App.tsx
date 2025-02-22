@@ -6,6 +6,7 @@ import LoginPage from './features/users/LoginPage';
 import RegisterPage from './features/users/RegisterPage';
 import NewCocktailPage from './features/cocktails/NewCocktailPage/NewCocktailPage';
 import MainPage from './containers/MainPage/MainPage';
+import DetailedCocktail from './features/cocktails/DetailedCocktail/DetailedCocktail';
 
 const App = () => {
   return (
@@ -19,9 +20,11 @@ const App = () => {
         <Container maxWidth='xl'>
           <Routes>
             <Route path='/' element={<MainPage />} />
+            <Route path='/cocktail/:id' element={<DetailedCocktail />} />
             <Route path='/login' element={<LoginPage />} />
             <Route path='/register' element={<RegisterPage />} />
             <Route path='/new-cocktail' element={<NewCocktailPage />} />
+            <Route path='/cocktails/my' element={<h4>Here is going to be users cocktail list.</h4>} />
             <Route path='*' element={<h3>Not Found</h3>} />
           </Routes>
         </Container>

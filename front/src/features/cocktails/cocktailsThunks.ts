@@ -1,4 +1,4 @@
-import { CocktailMutation } from '../../types';
+import { Cocktail, CocktailMutation } from '../../types';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axiosApi from '../../axiosApi';
 
@@ -19,4 +19,20 @@ export const createCocktail = createAsyncThunk<void, CocktailMutation>(
 
     await axiosApi.post("/cocktails", formData);
   },
+);
+
+export const fetchCocktails = createAsyncThunk<Cocktail[], void>(
+  "cocktails/fetchCocktails",
+  async () => {
+    const response = await axiosApi<Cocktail[]>("/cocktails");
+    return response.data || [];
+  },
+);
+
+export const fetchOneCocktail = createAsyncThunk<Cocktail, string>(
+  "cocktails/fetchOneCocktail",
+  async (id) => {
+    const response = await axiosApi<Cocktail>(`/cocktails/${id}`);
+    return response.data;
+  }
 );

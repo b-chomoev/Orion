@@ -46,7 +46,9 @@ const UserMenu: React.FC<Props> = ({user}) => {
         >
           Admin
         </MenuItem>}
+        <MenuItem onClick={() => navigate('/')}>Home</MenuItem>
         <MenuItem onClick={() => navigate('/new-cocktail')}>Add new Cocktail</MenuItem>
+        <MenuItem onClick={() => navigate('/cocktails/my')}>My cocktails</MenuItem>
         <MenuItem onClick={handleLogOut}>Log Out</MenuItem>
       </Menu>
     </>
