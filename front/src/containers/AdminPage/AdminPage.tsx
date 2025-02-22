@@ -8,6 +8,7 @@ import { useEffect } from 'react';
 import { fetchAllCocktails } from '../../features/cocktails/cocktailsThunks';
 import { Card, CardContent, CardMedia } from '@mui/material';
 import { apiUrl } from '../../globalConstants';
+import Button from '@mui/material/Button';
 
 const MainPage = () => {
   const cocktails = useAppSelector(selectCocktails);
@@ -42,6 +43,7 @@ const MainPage = () => {
                     Read more
                   </Link>
                 </CardContent>
+                <Button variant='contained'>Publish</Button>
               </Card>
             </Grid>
           ))}
