@@ -5,6 +5,7 @@ import { Route, Routes } from 'react-router-dom';
 import LoginPage from './features/users/LoginPage';
 import RegisterPage from './features/users/RegisterPage';
 import NewCocktailPage from './features/cocktails/NewCocktailPage/NewCocktailPage';
+import MainPage from './containers/MainPage/MainPage';
 
 const App = () => {
   return (
@@ -17,7 +18,7 @@ const App = () => {
       <main>
         <Container maxWidth='xl'>
           <Routes>
-            <Route path='/' element={<h3>Here is going to be the main page</h3>} />
+            <Route path='/' element={<MainPage />} />
             <Route path='/login' element={<LoginPage />} />
             <Route path='/register' element={<RegisterPage />} />
             <Route path='/new-cocktail' element={<NewCocktailPage />} />

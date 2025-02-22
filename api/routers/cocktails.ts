@@ -14,6 +14,22 @@ cocktailsRouter.get('/', async (req, res, next) => {
     }
 });
 
+cocktailsRouter.get('/my', auth, async (req, res, next) => {
+    try {
+        const request = req as RequestWithUser;
+        const myCocktails = await Cocktail.find({user: request.user._id});
+
+        if (myCocktails.length === 0) {
+            res.status(404).send({error: 'Not found'});
+            return;
+        }
+
+        res.send(myCocktails);
+    } catch (e) {
+        return next(e);
+    }
+});
+
 cocktailsRouter.get('/:id', async (req, res, next) => {
     try {
         const {id} = req.params;
